@@ -52,11 +52,11 @@ class Track{
         else
             noStroke();
         if(draw_fill){
-            let c = null;
             try{
-                c = this.colors.fill_fn(this.theta, this.offset);
-            }catch(e){}
-            fill(c ?? 'red');
+                fill(this.colors.fill_fn(this.theta, this.offset) ?? 'red');
+            }catch(e){
+                fill('red');
+            }
         }else
             noFill();
         circle(pos.x, pos.y, this.radius * radius_scalar);
