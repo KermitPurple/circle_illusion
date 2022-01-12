@@ -54,7 +54,7 @@ class Track{
         circle(end.x, end.y, d);
     }
 
-    draw_circle(){
+    draw_circle(radius_scalar = 0.1){
         let pos = rotate_around(
             this.offset,
             createVector(
@@ -66,7 +66,7 @@ class Track{
         let [s, f] = this.color_fn(this.theta);
         stroke(s);
         fill(f);
-        circle(pos.x, pos.y, 20);
+        circle(pos.x, pos.y, this.radius * radius_scalar);
     }
 
     update(){

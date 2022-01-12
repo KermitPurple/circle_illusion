@@ -1,5 +1,8 @@
 let els = {
     'circle_count': document.querySelector('#circle-count'),
+    'sliders': {
+        'circle_scalar': document.querySelector('#circle-scalar'),
+    }
 };
 let tracks = [];
 let radius;
@@ -19,8 +22,9 @@ function draw(){
         track.update();
         track.draw_line();
     }
+    let scalar = parseFloat(els.sliders.circle_scalar.value);
     for(let track of tracks)
-        track.draw_circle();
+        track.draw_circle(scalar);
 }
 
 function windowResized(){
