@@ -52,6 +52,10 @@ body{
     grid-template-columns: repeat(2, auto);
 }
 
+#fill-fn{
+    display: block;
+}
+
 .hidden{
     display: none !important;
 }

@@ -42,6 +42,7 @@ function setup(){
                 els.circle_fill_fn.classList.remove('hidden');
         }
     });
+    els.circle_fill_fn.addEventListener('input', set_fn_fill_color);
 }
 
 function draw(){
@@ -85,7 +86,8 @@ function set_static_fill_color(){
 }
 
 function set_fn_fill_color(){
-    set_fill_color(new Function('theta', 'offset', els.circle_fill_fn.value));
+    let f = new Function('degrees', 'offset', els.circle_fill_fn.value)
+    set_fill_color(f);
 }
 
 function set_fill_color(func){

@@ -47,11 +47,17 @@ class Track{
         );
         push()
         rotate(this.offset);
-        stroke(this.colors.border);
-        fill(this.colors.fill_fn(this.theta, this.offset));
-        if(!draw_border)
+        if(draw_border)
+            stroke(this.colors.border);
+        else
             noStroke();
-        if(!draw_fill)
+        if(draw_fill){
+            let c = null;
+            try{
+                c = this.colors.fill_fn(this.theta, this.offset);
+            }catch(e){}
+            fill(c ?? 'red');
+        }else
             noFill();
         circle(pos.x, pos.y, this.radius * radius_scalar);
         pop();

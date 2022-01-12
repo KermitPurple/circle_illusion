@@ -34,7 +34,7 @@
                         <option value="function">Function</option>
                     </select>
                     <input type="color" name="fill-color" id="fill-color" value="#6d02c5" class="hidden"/>
-                    <input type="text" name="fill-fn" id="fill-fn" value="push();colorMode(HSL);let c=color(theta + offset, 100, 50);pop();return c;" class="hidden"/>
+                    <textarea name="fill-fn" id="fill-fn" class="hidden">return color(degrees / 360 * 255, 0, offset / 360 * 255)</textarea>
                 </div>
             </div>
         </div>
