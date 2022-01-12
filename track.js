@@ -75,7 +75,6 @@ class Track{
     }
 
     static generate(count, radius){
-        console.log(count);
         let tracks = [];
         for(let i = 0; i < count; i++){
             let angle = i / count * 180
