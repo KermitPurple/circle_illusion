@@ -24,25 +24,19 @@ class Track{
     }
 
     draw_line(){
-        let start = rotate_around(
-            this.offset,
-            createVector(
-                this.center.x + this.radius,
-                this.center.y
-            ),
-            this.center
+        let start = createVector(
+            this.center.x + this.radius,
+            this.center.y
         );
-        let end = rotate_around(
-            this.offset,
-            createVector(
-                this.center.x - this.radius,
-                this.center.y
-            ),
-            this.center
+        let end = createVector(
+            this.center.x - this.radius,
+            this.center.y
         );
         let [s, f] = this.line_color_fn(this.tehta);
+        push();
         stroke(s);
         fill(f);
+        rotate(this.offset);
         line(
             start.x,
             start.y,
@@ -52,18 +46,17 @@ class Track{
         let d = 3;
         circle(start.x, start.y, d);
         circle(end.x, end.y, d);
+        pop();
     }
 
     draw_circle(radius_scalar = 0.1, draw_border, draw_fill){
-        let pos = rotate_around(
-            this.offset,
-            createVector(
-                this.radius * cos(this.theta) + this.center.x,
-                this.center.y
-            ),
-            this.center
+        let pos = createVector(
+            this.radius * cos(this.theta) + this.center.x,
+            this.center.y
         );
         let [s, f] = this.color_fn(this.theta);
+        push()
+        rotate(this.offset);
         stroke(s);
         fill(f);
         if(!draw_border)
@@ -71,6 +64,7 @@ class Track{
         if(!draw_fill)
             noFill();
         circle(pos.x, pos.y, this.radius * radius_scalar);
+        pop();
     }
 
     update(speed){
@@ -89,11 +83,4 @@ class Track{
         }
         return tracks;
     }
-}
-
-function rotate_around(angle, point, center = null){
-    return createVector(
-        center.x + cos(angle) * (point.x - center.x) - sin(angle) * (point.y - center.y),
-        center.y + sin(angle) * (point.x - center.x) + cos(angle) * (point.y - center.y),
-    );
 }
