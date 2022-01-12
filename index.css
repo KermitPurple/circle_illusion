@@ -29,6 +29,10 @@ body{
     display: none;
 }
 
+.dropdown-content input{
+    display: block;
+}
+
 .dropdown:hover .dropdown-icon{
     display: none;
 }
