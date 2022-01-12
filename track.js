@@ -69,8 +69,8 @@ class Track{
         circle(pos.x, pos.y, this.radius * radius_scalar);
     }
 
-    update(){
-        this.theta += 1;
+    update(speed){
+        this.theta += speed;
         this.theta %= 360;
     }
 
