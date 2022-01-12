@@ -37,10 +37,12 @@ body{
     display: inline;
 }
 
+.dropdown:focus-within .dropdown-icon,
 .dropdown:hover .dropdown-icon{
     display: none;
 }
 
+.dropdown:focus-within .dropdown-content,
 .dropdown:hover .dropdown-content{
     display: block;
 }
@@ -48,4 +50,8 @@ body{
 .checkboxes{
     display: grid;
     grid-template-columns: repeat(2, auto);
+}
+
+.hidden{
+    display: none;
 }

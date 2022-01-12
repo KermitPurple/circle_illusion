@@ -2,25 +2,17 @@ class Track{
     constructor(
         offset,
         radius,
-        color_fn = null,
-        line_color_fn = null,
         center = null
     ){
         this.theta = offset;
         this.offset = offset;
         this.radius = radius;
-        this.color_fn = color_fn ?? function(degrees) {
-            push();
-            colorMode(HSL)
-            let c = color(degrees, 100, 50);
-            pop();
-            return [color('white'), c];
-        }
-        this.line_color_fn = line_color_fn ?? function(_degrees){
-            let c = color('grey');
-            return [c, c];
-        }
         this.center = center ?? createVector(0, 0);
+        this.colors = {
+            'fill_fn': this.default_color_fn,
+            'border': color('white'),
+            'line': color('grey'),
+        };
     }
 
     draw_line(){
@@ -32,10 +24,9 @@ class Track{
             this.center.x - this.radius,
             this.center.y
         );
-        let [s, f] = this.line_color_fn(this.tehta);
         push();
-        stroke(s);
-        fill(f);
+        stroke(this.colors.line);
+        fill(this.colors.line);
         rotate(this.offset);
         line(
             start.x,
@@ -54,11 +45,10 @@ class Track{
             this.radius * cos(this.theta) + this.center.x,
             this.center.y
         );
-        let [s, f] = this.color_fn(this.theta);
         push()
         rotate(this.offset);
-        stroke(s);
-        fill(f);
+        stroke(this.colors.border);
+        fill(this.colors.fill_fn(this.theta, this.offset));
         if(!draw_border)
             noStroke();
         if(!draw_fill)
@@ -82,5 +72,13 @@ class Track{
             ));
         }
         return tracks;
+    }
+
+    default_color_fn(degrees, _offset) {
+        push();
+        colorMode(HSL)
+        let c = color(degrees, 100, 50);
+        pop();
+        return c;
     }
 }
