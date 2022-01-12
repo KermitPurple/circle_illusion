@@ -24,24 +24,7 @@ function setup(){
             els.circle_count.value = els.circle_count.max;
         generate_tracks();
     });
-    els.color_type.addEventListener('input', ()=>{
-        switch(els.color_type.value){
-            case 'rainbow':
-                set_rainbow_fill_color();
-                els.circle_fill_color.classList.add('hidden');
-                els.circle_fill_fn.classList.add('hidden');
-                break;
-            case 'static':
-                set_static_fill_color();
-                els.circle_fill_color.classList.remove('hidden');
-                els.circle_fill_fn.classList.add('hidden');
-                break;
-            case 'function':
-                set_fn_fill_color();
-                els.circle_fill_color.classList.add('hidden');
-                els.circle_fill_fn.classList.remove('hidden');
-        }
-    });
+    els.color_type.addEventListener('input', set_type_fill_color);
     els.circle_fill_fn.addEventListener('input', set_fn_fill_color);
 }
 
@@ -75,6 +58,7 @@ function generate_tracks(){
         parseInt(els.circle_count.value),
         radius
     );
+    set_type_fill_color();
 }
 
 function set_rainbow_fill_color(){
@@ -96,4 +80,23 @@ function set_fn_fill_color(){
 function set_fill_color(func){
     for(let track of tracks)
         track.colors.fill_fn = func;
+}
+
+function set_type_fill_color(){
+    switch(els.color_type.value){
+        case 'rainbow':
+            set_rainbow_fill_color();
+            els.circle_fill_color.classList.add('hidden');
+            els.circle_fill_fn.classList.add('hidden');
+            break;
+        case 'static':
+            set_static_fill_color();
+            els.circle_fill_color.classList.remove('hidden');
+            els.circle_fill_fn.classList.add('hidden');
+            break;
+        case 'function':
+            set_fn_fill_color();
+            els.circle_fill_color.classList.add('hidden');
+            els.circle_fill_fn.classList.remove('hidden');
+    }
 }

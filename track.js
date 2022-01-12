@@ -80,10 +80,10 @@ class Track{
         return tracks;
     }
 
-    static default_color_fn(degrees, _offset) {
+    static default_color_fn(degrees, offset) {
         push();
         colorMode(HSL)
-        let c = color(degrees, 100, 50);
+        let c = color((degrees + offset) % 360, 100, 50);
         pop();
         return c;
     }
