@@ -33,10 +33,19 @@ body{
     display: block;
 }
 
+.dropdown-content input[type=checkbox]{
+    display: inline;
+}
+
 .dropdown:hover .dropdown-icon{
     display: none;
 }
 
 .dropdown:hover .dropdown-content{
     display: block;
+}
+
+.checkboxes{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
 }

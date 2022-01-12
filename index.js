@@ -1,5 +1,6 @@
 let els = {
     'circle_count': document.querySelector('#circle-count'),
+    'circle_border': document.querySelector('#border'),
     'sliders': {
         'circle_scalar': document.querySelector('#circle-scalar'),
         'speed': document.querySelector('#speed'),
@@ -30,7 +31,11 @@ function draw(){
     }
     let scalar = parseFloat(els.sliders.circle_scalar.value);
     for(let track of tracks)
-        track.draw_circle(scalar);
+        track.draw_circle(
+            scalar,
+            els.circle_border.checked,
+            true,
+        );
 }
 
 function windowResized(){
