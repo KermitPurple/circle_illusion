@@ -1,6 +1,8 @@
 let els = {
     'circle_count': document.querySelector('#circle-count'),
     'circle_border': document.querySelector('#border'),
+    'circle_fill': document.querySelector('#fill'),
+    'draw_lines': document.querySelector('#draw-lines'),
     'sliders': {
         'circle_scalar': document.querySelector('#circle-scalar'),
         'speed': document.querySelector('#speed'),
@@ -25,17 +27,19 @@ function draw(){
     translate(windowWidth / 2, windowHeight / 2);
     background(0);
     let speed = parseFloat(els.sliders.speed.value);
-    for(let track of tracks){
-        track.update(speed);
-        track.draw_line();
-    }
+
+    if(els.draw_lines.checked)
+        for(let track of tracks)
+            track.draw_line();
     let scalar = parseFloat(els.sliders.circle_scalar.value);
-    for(let track of tracks)
+    for(let track of tracks){
         track.draw_circle(
             scalar,
             els.circle_border.checked,
-            true,
+            els.circle_fill.checked,
         );
+        track.update(speed);
+    }
 }
 
 function windowResized(){
