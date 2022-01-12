@@ -2,7 +2,7 @@ let els = {
     'circle_count': document.querySelector('#circle-count'),
     'circle_border': document.querySelector('#border'),
     'circle_fill': document.querySelector('#fill'),
-    'color-type': document.querySelector('#color-type'),
+    'color_type': document.querySelector('#color-type'),
     'circle_fill_color': document.querySelector('#fill-color'),
     'draw_lines': document.querySelector('#draw-lines'),
     'sliders': {
@@ -22,6 +22,20 @@ function setup(){
         if(parseInt(els.circle_count.value) > parseInt(els.circle_count.max))
             els.circle_count.value = els.circle_count.max;
         generate_tracks();
+    });
+    els.color_type.addEventListener('input', ()=>{
+        switch(els.color_type.value){
+            case 'rainbow':
+                set_rainbow_fill_color();
+                els.circle_fill_color.classList.add('hidden');
+                break;
+            case 'static':
+                set_static_fill_color();
+                els.circle_fill_color.classList.remove('hidden');
+                break;
+        }
+    });
+    els.circle_fill_color.addEventListener('input', ()=>{
     });
 }
 
@@ -57,7 +71,15 @@ function generate_tracks(){
     );
 }
 
-function set_fill_static_color(){
+function set_rainbow_fill_color(){
+    set_fill_color(Track.default_color_fn);
+}
+
+function set_static_fill_color(){
+    set_fill_color(()=>color(els.circle_fill_color.value));
+}
+
+function set_fill_color(func){
     for(let track of tracks)
-        track.colors.fill_fn = () => color(els.circle_fill_color.value);
+        track.colors.fill_fn = func;
 }

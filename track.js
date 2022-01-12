@@ -9,7 +9,7 @@ class Track{
         this.radius = radius;
         this.center = center ?? createVector(0, 0);
         this.colors = {
-            'fill_fn': this.default_color_fn,
+            'fill_fn': Track.default_color_fn,
             'border': color('white'),
             'line': color('grey'),
         };
@@ -74,7 +74,7 @@ class Track{
         return tracks;
     }
 
-    default_color_fn(degrees, _offset) {
+    static default_color_fn(degrees, _offset) {
         push();
         colorMode(HSL)
         let c = color(degrees, 100, 50);
