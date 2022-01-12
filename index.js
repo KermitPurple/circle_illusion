@@ -86,7 +86,10 @@ function set_static_fill_color(){
 }
 
 function set_fn_fill_color(){
-    let f = new Function('degrees', 'offset', els.circle_fill_fn.value)
+    let f = null;
+    try{
+        f = new Function('degrees', 'offset', els.circle_fill_fn.value)
+    }catch(e){}
     set_fill_color(f);
 }
 
