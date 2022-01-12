@@ -21,8 +21,8 @@
                 <div class=checkboxes>
                     <label for="border">Circle Border</label>
                     <input type="checkbox" name="border" id="border" checked>
-                    <label for="fill">Circle Fill</label>
-                    <input type="checkbox" name="fill" id="fill" checked>
+                    <label for="fill-box">Circle Fill</label>
+                    <input type="checkbox" name="fill-box" id="fill-box" checked>
                     <label for="draw-lines">Draw Lines</label>
                     <input type="checkbox" name="draw-lines" id="draw-lines" checked>
                 </div>
@@ -31,8 +31,10 @@
                     <select name="color-type" id="color-type">
                         <option value="rainbow">Rainbow</option>
                         <option value="static">Static</option>
+                        <option value="function">Function</option>
                     </select>
                     <input type="color" name="fill-color" id="fill-color" value="#6d02c5" class="hidden"/>
+                    <input type="text" name="fill-fn" id="fill-fn" value="push();colorMode(HSL);let c=color(theta + offset, 100, 50);pop();return c;" class="hidden"/>
                 </div>
             </div>
         </div>

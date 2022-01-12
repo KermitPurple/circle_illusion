@@ -1,9 +1,10 @@
 let els = {
     'circle_count': document.querySelector('#circle-count'),
     'circle_border': document.querySelector('#border'),
-    'circle_fill': document.querySelector('#fill'),
+    'circle_fill': document.querySelector('#fill-box'),
     'color_type': document.querySelector('#color-type'),
     'circle_fill_color': document.querySelector('#fill-color'),
+    'circle_fill_fn': document.querySelector('#fill-fn'),
     'draw_lines': document.querySelector('#draw-lines'),
     'sliders': {
         'circle_scalar': document.querySelector('#circle-scalar'),
@@ -28,14 +29,18 @@ function setup(){
             case 'rainbow':
                 set_rainbow_fill_color();
                 els.circle_fill_color.classList.add('hidden');
+                els.circle_fill_fn.classList.add('hidden');
                 break;
             case 'static':
                 set_static_fill_color();
                 els.circle_fill_color.classList.remove('hidden');
+                els.circle_fill_fn.classList.add('hidden');
                 break;
+            case 'function':
+                set_fn_fill_color();
+                els.circle_fill_color.classList.add('hidden');
+                els.circle_fill_fn.classList.remove('hidden');
         }
-    });
-    els.circle_fill_color.addEventListener('input', ()=>{
     });
 }
 
@@ -77,6 +82,10 @@ function set_rainbow_fill_color(){
 
 function set_static_fill_color(){
     set_fill_color(()=>color(els.circle_fill_color.value));
+}
+
+function set_fn_fill_color(){
+    set_fill_color(new Function('theta', 'offset', els.circle_fill_fn.value));
 }
 
 function set_fill_color(func){
