@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>New Project</title>
+        <title>Circle Illusion</title>
         <meta name="viewport" content="width=device-width">
         <link href="index.css" type="text/css" rel="stylesheet">
-        <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js" defer></script> -->
-        <!-- <script src="index.js" defer></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js" defer></script>
+        <script src="index.js" defer></script>
     </head>
     <body>
+        <div class=dropdown>
+            <div class=dropdown-icon>▼</div>
+            <div class=dropdown-content>
+                <label for="circle-count">Circle Count</label>
+                <input type="number" name="circle-count" id="circle-count" value=5 min=1 max=100 />
+            </div>
+        </div>
     </body>
 </html>
