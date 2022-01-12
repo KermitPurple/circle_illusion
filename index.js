@@ -13,7 +13,11 @@ function setup(){
     angleMode(DEGREES);
     radius = min(windowWidth, windowHeight) * 0.4;
     generate_tracks();
-    els.circle_count.addEventListener('input', generate_tracks);
+    els.circle_count.addEventListener('input', ()=>{
+        if(parseInt(els.circle_count.value) > parseInt(els.circle_count.max))
+            els.circle_count.value = els.circle_count.max;
+        generate_tracks();
+    });
 }
 
 function draw(){
